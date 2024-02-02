@@ -9,20 +9,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <meta name="googlebot" content="index,follow,snippet,archive">
-    <link rel="stylesheet" href="https://acy.github.io/hugo-theme-console/css/terminal-0.7.2.min.css">
-    <link rel="stylesheet" href="https://acy.github.io/hugo-theme-console/css/animate-4.1.1.min.css">
-    <link rel="stylesheet" href="https://acy.github.io/hugo-theme-console/css/console.css">
+    <link rel="stylesheet" href="https://wlw191.github.io/hugo-theme-console/css/terminal-0.7.2.min.css">
+    <link rel="stylesheet" href="https://wlw191.github.io/hugo-theme-console/css/animate-4.1.1.min.css">
+    <link rel="stylesheet" href="https://wlw191.github.io/hugo-theme-console/css/console.css">
     
       <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
        
-      <link href="https://acy.github.io/index.xml" rel="alternate" type="application/rss+xml" title="爱吃鱼的der" />
+      <link href="https://wlw191.github.io/index.xml" rel="alternate" type="application/rss+xml" title="爱吃鱼的der" />
     <meta property="og:title" content="爱吃鱼的der" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://acy.github.io/" />
+<meta property="og:url" content="https://wlw191.github.io/" />
 
 
 <meta name="twitter:title" content="爱吃鱼的der"/>
@@ -36,7 +36,7 @@
             <div class="logo terminal-prompt">
               
               
-              <a href="https://acy.github.io/" class="no-style ">爱吃鱼的der</a>:~# 
+              <a href="https://wlw191.github.io/" class="no-style ">爱吃鱼的der</a>:~# 
               </div></header>
           <nav class="terminal-menu">
             <ul vocab="https://schema.org/" typeof="BreadcrumbList">
@@ -64,7 +64,7 @@ Console is a minimal, responsive and light theme for Hugo inspired by Linux cons
         <div class="post">
             <p>
                 <div class="date">Feb. 2, 2024</div>
-                <h1><a href="https://acy.github.io/posts/my-first-post/" title="接口代理(proxy)">接口代理(proxy)</a></h1>
+                <h1><a href="https://wlw191.github.io/posts/my-first-post/" title="接口代理(proxy)">接口代理(proxy)</a></h1>
                 场景: 面向系统应用程序 何时使用代理: 想要构造一个类对象，该类对象是实现了一个或多个接口，但是编译时你可能并不知道这些接口是什么。 代理类 指定接口所需要的全部方法。 Object 类中的全部方法。 创建代理对象 需要使用 Proxy类的newProxyInstance 方法。这个方法有三个参数: 一个类加载器(class loader) 一个 Class 对象数组，每个元素对应实现的各个接口。 一个调用处理器(invocation handler) 需要代理机制解决什么问题例如: 将方法调用路由到远程服务器。 在运行的程序中将用户界面事件的动作关联起来。 为了调试，跟踪方法调用。 示例程序中，我们要使用代理和调用处理器跟踪方法调用。我们定义一个
 TranceHandler包装器类存储包装的对象，其中invoke方法会打印所调用的方法的名字和参数，随后拥抱状的对象作为隐式参数调用这个方法。
 // 示例代码如下 package proxy; import java.lang.reflect.InvocationHandler; import java.lang.reflect.Method; import java.lang.reflect.Proxy; import java.util.Arrays; import java.util.Random; public class ProxyTest { public static void main(String[] args) { var elements = new Object[1000]; for (int i = 0; i &lt; elements.length; i++) { Integer value = i + 1; var handler = new TranceHandler(value); Object proxy = Proxy.
