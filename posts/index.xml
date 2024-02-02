@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 爱吃鱼的der</title>
+    <link>https://acy.github.io/posts/</link>
+    <description>Recent content in Posts on 爱吃鱼的der</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Feb 2024 13:59:27 +0800</lastBuildDate>
+    <atom:link href="https://acy.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>接口代理(proxy)</title>
+      <link>https://acy.github.io/posts/my-first-post/</link>
+      <pubDate>Fri, 02 Feb 2024 13:59:27 +0800</pubDate>
+      <guid>https://acy.github.io/posts/my-first-post/</guid>
+      <description>场景: 面向系统应用程序 何时使用代理: 想要构造一个类对象，该类对象是实现了一个或多个接口，但是编译时你可能并不知道这些接口是什么。 代理类 指定接口所需要的全部方法。 Object 类中的全部方法。 创建代理对象 需要使用 Proxy类的newProxyInstance 方法。这个方法有三个参数: 一个类加载器(class loader) 一个 Class 对象数组，每个元素对应实现的各个接口。 一个调用处理器(invocation handler) 需要代理机制解决什么问题例如: 将方法调用路由到远程服务器。 在运行的程序中将用户界面事件的动作关联起来。 为了调试，跟踪方法调用。 示例程序中，我们要使用代理和调用处理器跟踪方法调用。我们定义一个&#xA;TranceHandler包装器类存储包装的对象，其中invoke方法会打印所调用的方法的名字和参数，随后拥抱状的对象作为隐式参数调用这个方法。&#xA;// 示例代码如下 package proxy; import java.lang.reflect.InvocationHandler; import java.lang.reflect.Method; import java.lang.reflect.Proxy; import java.util.Arrays; import java.util.Random; public class ProxyTest { public static void main(String[] args) { var elements = new Object[1000]; for (int i = 0; i &amp;lt; elements.length; i++) { Integer value = i + 1; var handler = new TranceHandler(value); Object proxy = Proxy.</description>
+    </item>
+  </channel>
+</rss>

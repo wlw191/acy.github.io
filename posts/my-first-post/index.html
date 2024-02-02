@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>爱吃鱼的der/posts/my-first-post/</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <link rel="stylesheet" href="https://acy.github.io/hugo-theme-console/css/terminal-0.7.2.min.css">
+    <link rel="stylesheet" href="https://acy.github.io/hugo-theme-console/css/animate-4.1.1.min.css">
+    <link rel="stylesheet" href="https://acy.github.io/hugo-theme-console/css/console.css">
+    
+      <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <meta property="og:title" content="接口代理(proxy)" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://acy.github.io/posts/my-first-post/" /><meta property="article:published_time" content="2024-02-02T13:59:27+08:00" />
+
+
+
+<meta name="twitter:title" content="接口代理(proxy)"/>
+<meta name="twitter:description" content="场景: 面向系统应用程序 何时使用代理: 想要构造一个类对象，该类对象是实现了一个或多个接口，但是编译时你可能并不知道这些接口是什么。 代理类 指定接口所需要的全部方法。 Object 类中的全部方法。 创建代理对象 需要使用 Proxy类的newProxyInstance 方法。这个方法有三个参数: 一个类加载器(class loader) 一个 Class 对象数组，每个元素对应实现的各个接口。 一个调用处理器(invocation handler) 需要代理机制解决什么问题例如: 将方法调用路由到远程服务器。 在运行的程序中将用户界面事件的动作关联起来。 为了调试，跟踪方法调用。 示例程序中，我们要使用代理和调用处理器跟踪方法调用。我们定义一个
+TranceHandler包装器类存储包装的对象，其中invoke方法会打印所调用的方法的名字和参数，随后拥抱状的对象作为隐式参数调用这个方法。
+// 示例代码如下 package proxy; import java.lang.reflect.InvocationHandler; import java.lang.reflect.Method; import java.lang.reflect.Proxy; import java.util.Arrays; import java.util.Random; public class ProxyTest { public static void main(String[] args) { var elements = new Object[1000]; for (int i = 0; i &lt; elements.length; i&#43;&#43;) { Integer value = i &#43; 1; var handler = new TranceHandler(value); Object proxy = Proxy."/>
+
+</head>
+<body class="terminal">
+    <div class="container">
+        <div class="terminal-nav">
+          <header class="terminal-logo">
+            <div class="logo terminal-prompt">
+              
+              
+              <a href="https://acy.github.io/" class="no-style ">爱吃鱼的der</a>:~# 
+              <a href='https://acy.github.io/posts'>posts</a>/<a href='https://acy.github.io/posts/my-first-post'>my-first-post</a>/</div></header>
+          <nav class="terminal-menu">
+            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
+                
+            </ul>
+          </nav>
+        </div>
+    </div>
+
+    <div class="container " >
+        
+<h1>接口代理(proxy)</h1>
+
+Feb. 2, 2024
+
+
+<br/><br/>
+<h3 id="场景">场景:</h3>
+<ul>
+<li>面向系统应用程序</li>
+</ul>
+<h3 id="何时使用代理">何时使用代理:</h3>
+<ul>
+<li>想要构造一个类对象，该类对象是实现了一个或多个接口，但是编译时你可能并不知道这些接口是什么。</li>
+</ul>
+<h3 id="代理类">代理类</h3>
+<ol>
+<li>指定接口所需要的全部方法。</li>
+<li>Object 类中的全部方法。</li>
+</ol>
+<h3 id="创建代理对象">创建代理对象</h3>
+<ol>
+<li>需要使用 <code>Proxy</code>类的<code>newProxyInstance</code> 方法。这个方法有三个参数:
+<ul>
+<li>一个类加载器(class loader)</li>
+<li>一个 Class 对象数组，每个元素对应实现的各个接口。</li>
+<li>一个调用处理器(invocation handler)</li>
+</ul>
+</li>
+<li>需要代理机制解决什么问题例如:
+<ul>
+<li>将方法调用路由到远程服务器。</li>
+<li>在运行的程序中将用户界面事件的动作关联起来。</li>
+<li>为了调试，跟踪方法调用。</li>
+</ul>
+</li>
+</ol>
+<p>示例程序中，我们要使用代理和调用处理器跟踪方法调用。我们定义一个</p>
+<p><code>TranceHandler</code>包装器类存储包装的对象，其中<code>invoke</code>方法会打印所调用的方法的名字和参数，随后拥抱状的对象作为隐式参数调用这个方法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 示例代码如下</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> proxy;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.lang.reflect.InvocationHandler;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.lang.reflect.Method;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.lang.reflect.Proxy;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Arrays;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Random;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ProxyTest</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> elements <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[</span>1000<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> elements.<span style="color:#a6e22e">length</span>; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            Integer value <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> 1;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">var</span> handler <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TranceHandler(value);
+</span></span><span style="display:flex;"><span>            Object proxy <span style="color:#f92672">=</span> Proxy.<span style="color:#a6e22e">newProxyInstance</span>(
+</span></span><span style="display:flex;"><span>                    ClassLoader.<span style="color:#a6e22e">getSystemClassLoader</span>(),
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]</span> { Comparable.<span style="color:#a6e22e">class</span> }, handler);
+</span></span><span style="display:flex;"><span>            elements<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> proxy;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Integer key <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Random().<span style="color:#a6e22e">nextInt</span>(elements.<span style="color:#a6e22e">length</span>) <span style="color:#f92672">+</span> 1;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> Arrays.<span style="color:#a6e22e">binarySearch</span>(elements, key);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (result <span style="color:#f92672">&gt;=</span> 0) System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(elements<span style="color:#f92672">[</span>result<span style="color:#f92672">]</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TranceHandler</span> <span style="color:#66d9ef">implements</span> InvocationHandler {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Object target;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">TranceHandler</span>(Object t) {
+</span></span><span style="display:flex;"><span>        target <span style="color:#f92672">=</span> t;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">invoke</span>(Object proxy, Method m, Object<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Throwable {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// print implicit argument</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>(target);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// print method name</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#f92672">+</span> m.<span style="color:#a6e22e">getName</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;(&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// print explicit arguments</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (args <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> args.<span style="color:#a6e22e">length</span>; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>(args<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&lt;</span> args.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> 1) System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;, &#34;</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;)&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// invoke actual method</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m.<span style="color:#a6e22e">invoke</span>(target, args);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>    
+</span></span></code></pre></div>
+
+
+        <div class="footer">
+    Powered by <a href="https://gohugo.io/">Hugo</a> with
+    <a href="https://github.com/mrmierzejewski/hugo-theme-console/">Console Theme</a>. 
+</div>
+
+    </div>
+  </body>
+</html>
